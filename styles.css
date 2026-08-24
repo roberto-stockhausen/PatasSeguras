@@ -4,3 +4,12 @@
 .space{
     margin-left: 120px;
 }
+.table01{
+    border: 2px solid;
+    background-color: rgb(255, 255, 255);
+}
+th{
+    background-color: rgb(126, 145, 255);
+    padding-left: 12px;
+    padding-right: 12px;
+}
