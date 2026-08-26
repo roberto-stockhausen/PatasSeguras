@@ -80,7 +80,7 @@ $animais = mysqli_query($conn, "SELECT * FROM animais");
             <td> <?php echo $cliente["nome"]; ?> </td>
             <td> <?php echo $cliente["email"]; ?> </td>
             <td> <a href="public/info.php?id=<?php echo $cliente["id"]; ?>"> Mais informações </a> </td>
-            <td> <a href="public/editar.php?id=<?php echo $cliente["id"]; ?>"> Editar </a> </td>
+            <td> <a href="public/editar_usuario.php?id=<?php echo $cliente["id"]; ?>"> Editar </a> </td>
             <td> <a href="public/excluir_usuario.php?id=<?php echo $cliente["id"]; ?>"> Excluir </a> </td>
         </tr>
        <?php } ?>
@@ -91,6 +91,7 @@ $animais = mysqli_query($conn, "SELECT * FROM animais");
         <tr>
             <th> id </th>
             <th> Nome </th>
+            <th> Raça </th>
             <th> Dono </th>
             <th> Status </th>
             <th> Editar </th>
@@ -103,6 +104,7 @@ $animais = mysqli_query($conn, "SELECT * FROM animais");
                     <tr>
                         <td> <?php echo $animal["id"]; ?> </td>
                         <td> <?php echo $animal["nome"]; ?> </td>
+                        <td> <?php echo $animal["race"]; ?> </td>
                         <?php $nome_dono =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT nome FROM clientes WHERE id = {$animal['dono']}")); ?>
                         <td> <?php echo $nome_dono["nome"]; ?> </td>
                         <td> <?php echo $animal["life"]; ?> </td>
