@@ -40,8 +40,17 @@ $animais = mysqli_query($conn, "SELECT * FROM animais");
         <label for="nome"> Nome: </label>
         <input type="text" name="nome" required>
         <br>
+        <label for="raca"> Raça/Espécie: </label>
+        <input type="text" name="raca" required>
+        <br>
+        <label for="life"> Status </label>
+        <select name="life" id="">
+            <option value="vivo"> Vivo </option>
+            <option value="Morto"> Morto </option>
+        </select>
+        <br>
         <label for="dono"> Dono: </label>
-        <select name="dono" id="">
+        <select name="dono" id="" required>
             <option value=""> Selecionar </option>
             <?php while ($dono = mysqli_fetch_assoc($donos)) 
             {
@@ -83,6 +92,7 @@ $animais = mysqli_query($conn, "SELECT * FROM animais");
             <th> id </th>
             <th> Nome </th>
             <th> Dono </th>
+            <th> Status </th>
             <th> Editar </th>
             <th> Excluir </th>
        </tr>
@@ -93,9 +103,10 @@ $animais = mysqli_query($conn, "SELECT * FROM animais");
                     <tr>
                         <td> <?php echo $animal["id"]; ?> </td>
                         <td> <?php echo $animal["nome"]; ?> </td>
-                        <?php $nome_dono = mysqli_query($conn, "SELECT nome FROM clientes WHERE id = {$animal['dono']}"); ?>
-                        <td> <?php echo $nome_dono; ?> </td>
-                        <td> <a href="public/editar.php?id=<?php echo $animal["id"]; ?>"> Editar </a> </td>
+                        <?php $nome_dono =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT nome FROM clientes WHERE id = {$animal['dono']}")); ?>
+                        <td> <?php echo $nome_dono["nome"]; ?> </td>
+                        <td> <?php echo $animal["life"]; ?> </td>
+                        <td> <a href="public/editar_animal.php?id=<?php echo $animal["id"]; ?>"> Editar </a> </td>
                         <td> <a href="public/excluir_animal.php?id=<?php echo $animal["id"]; ?>"> Excluir </a> </td>
                     </tr>
                 <?php } ?> 
